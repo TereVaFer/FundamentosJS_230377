@@ -58,4 +58,5 @@ saldo_cuenta=saldo_cuenta- (cantidad*costo_producto);
 console.log(`Tu nuevo saldo es de:  ${saldo_cuenta}`);
 //El cliente realiza un abono de 1500
 monto_trasaccion=1500; 
-console.log(`Tu abono de : ${monto_trasaccion} ha sido recibido, tu nuevo saldo es de : ${(saldo_cuenta+monto_trasaccion)}`);
+console.log(`Tu abono de : ${monto_trasaccion} ha sido recibido, tu nuevo saldo es de : ${(saldo_cuenta+monto_trasaccion)}`) ;
+
