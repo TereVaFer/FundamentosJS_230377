@@ -9,10 +9,12 @@ Previo a iniciar el desarrollo de software para web usando el framework de NodeJ
 
 ## Historial de Prácticas 
 
-|No.|Descripción|Estatus|
-|--|--|--|
-|1.|Metodología de Evaluación| Activa|
-|2.|Inicialización del Proyecto de Fundamentos de JS| Activa|
+|No.|Descripción|Potenciador|Estatus|
+|--|--|--|--|
+|1.|Metodología de Evaluación|1|Finalizada |
+|2.|Inicialización del Proyecto de Fundamentos de JS| Finalizada|
+|3.|Declaración de Variables (Undefined/Boolean/Number)|10|Finalizada|
+|4.|Declaración de Variables (String/BigInt/Symbol/NULL/Fuction)|Por definir|Activa|
 
 ## Autor
 Teresa Vargas Fernández 
