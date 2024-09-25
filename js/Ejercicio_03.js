@@ -96,7 +96,7 @@ let Pedido = {
     Comprador_Clave: 1808,
     Cantidad: 3,
     Estatus: "Carrito de Compra",
-    TipoPago: "Efectivo"
+    TipoPago: "Tarjeta de Crédito"
 }
 
 //En base a los 3 objetos necesitamos calcular el casto de compra y si le alcanza con sus saldo a favor
@@ -134,6 +134,109 @@ let nuevoTipoDisponibilidad= typeof(Producto2.Disponibilidad)
 console.log(Producto2)
 console.log(Producto2)
 console.log(`El nuevo tipo de dato de la disponibilidad es:${nuevoTipoDisponibilidad}`)
+//Si
+
+
+//Agregar nuevas propiedades a un objetos existente
+console.log('%c5. Agregación de las Propiedades de un Objeto', style_console)
+console.log("Objetos antes de ser Modificados")
+console.table(Comprador)
+
+//Agregabdo propiedades
+Comprador[`Dirección `]= "Av. 17 Junio, Privada de Aldama, Xicotepec de Juárez"
+Comprador[`Tipo `]= "Premium"
+Comprador[`Estatus `]= "Inactivo"
+Comprador[`Saldo `]= 35000.00
+console.log("Objeto despuués de ser modificado:")
+console.table(Comprador)
+
+
+//Eliminar las propiedades de un objeto existente
+console.log('%c6. Eliminación de las Propiedades de un Objeto', style_console)
+console.log("Objetos antes de ser Modificados")
+console.table(Pedido)
+//Eliminamos las propiedades de tipoPago de Pedido
+delete Pedido.TipoPago
+
+console.log("Objeto Modificado: ")
+console.table(Pedido)
+
+
+
+console.log('%c7. Métodos para controlar la mutabilidad de los Objetos, Congelación (FREEZE) ', style_console)
+//Si deseamos no permitir que los Objetos sean modificados ni en estructura, ni en valor utilizaremos el método FREEZE (Congelar)
+console.log(`La estructura actual del objeto COMPRADOR es: `)
+console.table(Comprador)
+Object.freeze(Comprador)
+//Intentamos agregar, eliminar o modificar los valores de sus propiedades
+Comprador.FechaUltimaCompra = "01/052024 19:10:15"
+delete Comprador.Tipo
+Comprador.Direccion="Calle 16 de Septiembre #102, Col Manantiales, Huauchinango Puebla, México"
+console.log(`Verificamos si se realiaron los cambios en el Objeto Comprador: `)
+console.table(Comprador)
+
+
+console.log('%c8. Métodos para controlar la mutabilidad de los Objetos, Sellado (SEAL) ', style_console);
+//Sin embargo, en el caso que deseamos poder modificar los valores de lads propiedades del Objeto, pero no su eswtructura, usaremos SEAL
+console.log(`Objeto antes de ser Modificado`)
+console.table(Pedido)
+//Sellamos el Objeto
+Object.seal(Pedido)
+//Intentamos modificar su estructura
+Pedido[`FechaPedido`]= "25/05/2024 11:12:20"
+delete Pedido[`Cantidad`]
+console.log(`Verificamos si se realizaron los cambios en el Objeto PEDIDO:`)
+console.table(Pedido)
+//Ahora intentamos modificar el valor de las propiedades
+console.Cantidad=5
+console.log(`Verificamos si se realizaron cambios en el Objeto PEDIDO:`)
+console.table(Pedido)
+
+//Desestruración de 2 o más objetos
+console.log('%c9. Desestruración de 2 o más objetos ', style_console);
+
+let{} = {Precio: productoPrecio,  Marca: productoMarca} = producto
+let{} = {Correo: clienteCorreo, PaisOrigen: clientePais, SaldoActual: clienteSaldo, Tipo:clienteTipo} = Comprador
+
+//Tranformar valores cuantitativos en cualitativos
+if(productoPrecio  > 2000){
+    productoPrecio= "Caro"
+}else{
+    productoPrecio= "Barato"
+}
+if(clienteSaldo > 0){
+    clienteSaldo= "A favor"
+}else if (clienteSaldo < 0){
+    clienteSaldo= "En contra"
+}else{
+    clienteSaldo="Sin deuda"
+}
+
+//Transformar valores cualitativos en cuantitativos
+let clienteNivel;
+if(clienteTipo=="Premium")
+    clienteNivel=1
+if(clienteTipo=="Freemium")
+    clienteNivel=2
+if(clienteTipo=="No identificado")
+    clienteNivel=3
+
+
+// Clasificar al cliente por su país de Origen
+if(clientePais== "México")
+    clientePais="Nacional"
+else
+    clientePais= "Extrangero"
+
+
+
+//OLE - Object Literal Enhacement
+
+let datosClientePromociones={clienteCorreo, clientePais, clienteNivel, clienteSaldo, productoMarca, productoPrecio}
+
+//El nuevo objeto que creamos sería un ejemplo de la información  que enviaremos al area de marketing para la disfuión de promociones
+console.log(`Los datos del cliente y sus habitos de compras son:`)
+console.table(datosClientePromociones)
 
 
 
@@ -141,75 +244,6 @@ console.log(`El nuevo tipo de dato de la disponibilidad es:${nuevoTipoDisponibil
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Objetos
-
-// const producto = {
-//     Nombre:"Table 9\"",
-//     Marca: "Ford",
-//     Modelo: "Tremor",
-//     Costo_Compra: 500000,
-//     Costo_Venta: 85500,
-//     Disponible: true,
-//     SKU: Symbol("La mejor camioneta"),
-//     Colores: ["Negro" , "Rojo", "Azul Marino"]
-
-// }
-
-// //Imprimir el objeto 
-// console.warn("---OBJETO ---");
-// console.log(producto);
-
-// // Los objetos también pueden presentarse en formato de tabla utilizando la función console.table
-
-// console.table(producto);
-
-// // Acceder a las prioridades de un objeto
-// console.warn("---Leyendo las Propiedades de un Objeto y sus tipos de dato")
-// console.log(`Nombre del Producto: ${(producto.Nombre)}, que es de tipo: ${typeof(producto.Nombre)}`)
-// console.log(`Marca del Producto: ${(producto.Marca)}, que es de tipo: ${typeof(producto.Marca)}`)
-// console.log(`Modelo del Producto: ${(producto.Modelo)}, que es de tipo: ${typeof(producto.Modelo)}`)
-// console.log(`Costo_Venta del Producto: ${(producto.Costo_Compra)}, que es de tipo: ${typeof(producto.Costo_Compra)}`)
-// console.log(`Disponible: ${(producto.Disponible)}, que es de tipo: ${typeof(producto.Disponible)}`)
-// console.log(`SKU: ${(String(producto.SKU))}, que es de tipo: ${typeof(producto.SKU)}`)
-// console.log(`Colores: ${(producto.Colores)}, que es de tipo: ${typeof(producto.Colores)}`)
+//Operaciones sobre objetos
+//Unión de Objetos
+console.log('%c10. Métodos para controlar la mutabilidad de los Objetos, Sellado (SEAL) ', style_console);
