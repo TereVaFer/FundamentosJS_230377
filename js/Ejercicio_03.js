@@ -34,6 +34,7 @@ console.log(typeof(Producto_Sku))
 console.log('%c2. Objeto', style_console)
 //Ahora se declara como un OBJETO
 const producto = {
+    ID: 180823,
     Producto_Nombre: " Televisión",
     Producto_Marca: "Samsung",
     Producto_Modelo: "Smart TV",
@@ -56,7 +57,7 @@ console.warn("Leyendo las propiedades especificas del objeto.")
 console.log(`Nombre del producto: ${producto.Producto_Nombre}`)
 console.log(`Nombre de la marca: ${producto.Producto_Marca}`)
 console.log(`Nombre del modelo: ${producto.Producto_Modelo}`)
-console.log(`Precio del producto: ${producto.Producto_Precio}`)
+console.log(`Precio del producto: ${producto.Promducto_Precio}`)
 if(producto.Producto_Disponible == 0){
     console.log(`Estatus: Agotado`)
 }else{
@@ -82,6 +83,7 @@ let Producto2 = {
 }
 
 let Comprador = {
+    ID : 112,
     Clave: 1808,
     Nombres: "Teresa ",
     Apellidos: "Vargas Fernández",
@@ -92,8 +94,9 @@ let Comprador = {
 }
 
 let Pedido = {
-    Producto_Clave: 285,
-    Comprador_Clave: 1808,
+    ID: 120203,
+    Producto_ID: 285,
+    Comprador_ID: 1808,
     Cantidad: 3,
     Estatus: "Carrito de Compra",
     TipoPago: "Tarjeta de Crédito"
@@ -230,8 +233,8 @@ else
 
 
 
-//OLE - Object Literal Enhacement
 
+//OLE - Object Literal Enhacement
 let datosClientePromociones={clienteCorreo, clientePais, clienteNivel, clienteSaldo, productoMarca, productoPrecio}
 
 //El nuevo objeto que creamos sería un ejemplo de la información  que enviaremos al area de marketing para la disfuión de promociones
@@ -242,8 +245,56 @@ console.table(datosClientePromociones)
 
 
 
-
-
 //Operaciones sobre objetos
 //Unión de Objetos
 console.log('%c10. Métodos para controlar la mutabilidad de los Objetos, Sellado (SEAL) ', style_console);
+
+console.log("Imprimimos la estructura y valores del Objeto PRODUCTO")
+console.table(producto)
+
+console.log("Imprimimos la estructura y valores del Objeto PEDIDO")
+console.table(Pedido)
+//Suponiendo que el usuario ya realizó el pago el pedido se convierta en una VENTA que requiere información de ambos objetos
+//IMPORTANTE: ASSIGN, no solo permite la fusión de 2 o más objetos, también muta los objetos originales, perdiendo el valor original del ID en este caso
+let Producto3 = {...producto}
+const Venta = Object.assign(Producto3, Pedido);
+console.log("Consultamos este nuevo objeto VENTA")
+console.table(Venta)
+
+
+
+
+
+//Union de Objetos usando SPRED OPERATOR para evitar la perdida de informacion con objetoos que comparten el mismo nombre de sus propiedades
+console.log('%c11. Unión de Objetos usando el SPREAD OPERATOR) ', style_console);
+
+console.table(producto)
+console.table(Comprador)
+console.table(Pedido)
+
+let Venta2 ={
+    producto:{...producto},
+    comprador: {...Comprador},
+    pedido: {...Pedido}
+}
+console.log("Fusionamos los 3 objetos en uno nuevo, sin perdida de Información")
+console.table(Venta2)
+
+
+//Vamos a verificar el estatus de mutabilidad de los objetos
+console.log("Vamos a modificar el estatus de Mutabilidad del Objeto PEDIDIO")
+console.log(`¿Esta el objeto de Pedido Congelado? : ${Object.isFrozen(Pedido)}`);
+console.log(`¿Esta el Objeto de Pedido Sellado? ${Object.isSealed(Pedido)}`);
+
+console.log("Vamos a modificar el estatus de Mutabilidad del Objeto COMPRADOR")
+console.log(`¿Esta el objeto de Pedido Congelado? : ${Object.isFrozen(Comprador)}`)
+console.log(`¿Esta el Objeto de Pedido Sellado? ${Object.isSealed(Comprador)}`)
+
+console.log("Vamos a modificar el estatus de Mutabilidad del Objeto PRODUCTO")
+console.log(`¿Esta el objeto de Pedido Congelado? : ${Object.isFrozen(producto)}`)
+console.log(`¿Esta el Objeto de Pedido Sellado? ${Object.isSealed(producto)}`)
+
+//Modificamos la estructura de producto, agregando una nueva propiedad
+producto[`isLegacy`] = false
+console.table(producto)
+console.table(Venta2)
