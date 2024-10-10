@@ -363,7 +363,7 @@ for( let i in seriesTrending){
     console.log(`----------`)
 }
 
-console.log("%c11. Ciclos", style_console)
+console.log("%c11. Ciclos interrumpidos para cada uno de los elementos del arreglo (FOR EACH)", style_console)
 
 //Lista de series de TV trending con temporadas, viewers y reproducciobnes
 
