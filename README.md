@@ -17,7 +17,7 @@ Previo a iniciar el desarrollo de software para web usando el framework de NodeJ
 |4.|Declaración de Variables (String/BigInt/Symbol/NULL/Fuction)|6|Finalizada|
 |5.|Introducción a objetos| 19| Finalizada|
 |6.|Repaso de Arreglos| 18| Finalizada|
-|6.|Sentencias de control y ciclos| 16| Finalizada|
+|7.|Sentencias de control y ciclos| 16| Finalizada|
 
 
 ## Autor
